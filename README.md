@@ -1,6 +1,8 @@
 # REST IS GOOD
 Shitty typescript + node.js + express web app. This is a set counter for workouts and a rest timer in one. Wow.
 
+https://rest-is-good.herokuapp.com/
+
 ## TODO
 - style
 - feedback of actions
