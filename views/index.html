@@ -1,0 +1,103 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>rest is GOOD</title>
+  <meta name="description" content="rest is GOOD">
+  <meta name="author" content="edward ong 2020 etc">
+
+  <link rel="stylesheet" href="styles.css?v=1.0">
+  
+  <script>
+    
+    class Timer {
+      constructor() {
+        this.seconds_elapsed = 0;
+        this.enabled = false;
+        this.timeoutObj = null;
+      }
+      
+      disable() {
+        if (this.timeoutObj) {
+          clearTimeout(this.timeoutObj);
+          this.enabled = false;
+        }
+      }
+      
+      enable() {
+        this.updateDisplayedTime();
+        if (!this.enabled){
+          
+          this.timeoutObj = setInterval(
+            () => {
+                this.seconds_elapsed++;
+                this.updateDisplayedTime();
+            }
+            , 1000
+          )
+          this.enabled = true
+        }
+      }
+      
+      updateDisplayedTime() {
+        let hours = Math.floor(this.seconds_elapsed / 3600);
+        let minutes = Math.floor(this.seconds_elapsed / 60);
+        let seconds = this.seconds_elapsed % 60
+        
+        let stringList = [];
+        if (hours) {
+          stringList.push(`${hours}h`)
+        }
+        if (hours | minutes) {
+          stringList.push(`${minutes}m`)
+        }
+        stringList.push(`${seconds}s`)
+        
+        
+        document.getElementById('timer').innerHTML = stringList.join(' ');
+      }
+      
+      toggleState() {
+        if (this.enabled) {
+          this.disable();
+        } else {
+          this.enable();
+        }
+      }
+    }
+    
+    var timer = new Timer();  
+
+  </script>
+
+</head>
+
+<body>
+  <div id="timer" onClick="onTimerClicked()">
+    0
+  </div>
+  
+  <div id="counter" onClick="onCounterClicked()">
+    0
+  <div>
+    
+  <script src="script.js"></script>
+  
+  <script>
+    
+    function onTimerClicked() {
+      timer.toggleState();
+    }
+  
+    let counter = 0;
+    function onCounterClicked() {
+      counter++;
+      document.getElementById('counter').innerHTML = counter;
+      timer.seconds_elapsed = 0;
+      timer.enable();
+    }
+    </script>
+</body>
+</html>

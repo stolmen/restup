@@ -1,0 +1,10 @@
+
+html {
+  box-sizing: border-box;
+  font-size: 221px;
+  text-align: center;
+  font-family: sans-serif;
+  user-select: none;
+  margin: 64px auto;
+  touch-action: none;
+}
