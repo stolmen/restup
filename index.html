@@ -9,6 +9,27 @@
   <meta name="author" content="edward ong 2020 etc">
 
   <link rel="stylesheet" href="styles.css?v=1.0">
+
+</head>
+
+  
+<body>
+  <div class="stuff">
+    <div id="timer" onClick="onTimerClicked()">
+      0
+    </div>
+  
+    <div id="counter" onClick="incrementCounterAndResetTimer()">
+      0
+    <div>
+  </div>
+
+    
+  <script>
+    
+
+    </script>
+</body>
   
   <script>
     
@@ -17,6 +38,8 @@
         this.seconds_elapsed = 0;
         this.enabled = false;
         this.timeoutObj = null;
+
+        this.enable();
       }
       
       disable() {
@@ -70,37 +93,47 @@
     
     var timer = new Timer();  
 
-  </script>
+        
 
-</head>
+    let counter = 0;
 
-<body>
-  <div class="stuff">
-    <div id="timer" onClick="onTimerClicked()">
-      0
-    </div>
-  
-    <div id="counter" onClick="onCounterClicked()">
-      0
-    <div>
-  </div>
-
-    
-  <script src="script.js"></script>
-  
-  <script>
-    
     function onTimerClicked() {
       timer.toggleState();
     }
   
-    let counter = 0;
-    function onCounterClicked() {
-      counter++;
+    function updateCounter() {
       document.getElementById('counter').innerHTML = counter;
       timer.seconds_elapsed = 0;
       timer.enable();
     }
-    </script>
-</body>
+
+    function incrementCounter() {
+      counter++;
+      updateCounter();
+    }
+
+    function resetCounter() {
+      counter = 0;
+      updateCounter();
+    }
+
+
+    const keypresses = {
+      'ArrowUp': resetCounter,
+      'ArrowDown': incrementCounter,
+    };
+
+     document.addEventListener('keydown', e=>{
+      console.log(`You pressed ${e.key}`)
+      const fn = keypresses[e.key]
+      console.log(fn)
+      if (fn) {
+        fn();
+      }
+     })
+
+  </script>
+
+
+
 </html>
